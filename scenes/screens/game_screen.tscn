@@ -16,11 +16,11 @@ visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 12.0
-offset_bottom = 42.0
+offset_top = 10.0
+offset_bottom = 34.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
-text = "WARNING: Too many anomalies are active."
+theme_override_font_sizes/font_size = 16
+text = "WARNING: Anomaly activity detected."
 horizontal_alignment = 1
 
 [node name="TimeLabel" type="Label" parent="."]
@@ -38,12 +38,26 @@ horizontal_alignment = 2
 
 [node name="DangerLabel" type="Label" parent="."]
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 166.0
+offset_top = -52.0
+offset_right = 390.0
+offset_bottom = -28.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "DEBUG anomalies: 0"
+
+[node name="CameraLabel" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 0
 offset_left = 24.0
 offset_top = 16.0
-offset_right = 280.0
-offset_bottom = 40.0
-text = "ANOMALIES: 0"
+offset_right = 320.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 20
+text = "APARTMENT HALL"
 
 [node name="CameraButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -130,18 +144,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CameraLabel" type="Label" parent="CameraPanel/Overlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 34
-text = "APARTMENT HALL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="FeedHintLabel" type="Label" parent="CameraPanel/Overlay"]
 layout_mode = 1
 anchors_preset = 12
@@ -157,6 +159,35 @@ grow_vertical = 0
 text = "No obvious movement."
 horizontal_alignment = 1
 
+[node name="LeftArrowButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "<"
+
+[node name="RightArrowButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_right = -12.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = ">"
+
 [node name="ReportButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -171,6 +202,18 @@ offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "REPORT"
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -70.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_vertical = 0
+text = "PAUSE"
 
 [node name="ReportPanel" type="Panel" parent="."]
 visible = false
@@ -225,7 +268,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "CANCEL"
 
-[node name="MessageLabel" type="Label" parent="."]
+[node name="PausePanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -233,12 +276,54 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -35.0
-offset_right = 260.0
-offset_bottom = 35.0
+offset_left = -160.0
+offset_top = -86.0
+offset_right = 160.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CenterBox" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="PauseLabel" type="Label" parent="PausePanel/CenterBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="PausePanel/CenterBox"]
+layout_mode = 2
+text = "Time is stopped."
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePanel/CenterBox"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="MessageLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -260.0
+offset_top = 38.0
+offset_right = 260.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 28
 text = "MESSAGE"
 horizontal_alignment = 1

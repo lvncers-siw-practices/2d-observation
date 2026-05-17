@@ -2,17 +2,19 @@ extends Control
 
 signal camera_changed(room_index: int)
 signal report_submitted(room_index: int, anomaly_index: int)
+signal pause_requested
 
 const NOISE_ASSET_PATH := "res://assets/ui/noise_overlay.svg"
 
 @onready var warning_label: Label = $WarningLabel
 @onready var time_label: Label = $TimeLabel
 @onready var danger_label: Label = $DangerLabel
-@onready var camera_label: Label = $CameraPanel/Overlay/CameraLabel
+@onready var camera_label: Label = $CameraLabel
 @onready var feed_hint_label: Label = $CameraPanel/Overlay/FeedHintLabel
 @onready var room_texture: TextureRect = $CameraPanel/RoomTexture
 @onready var noise_texture: TextureRect = $CameraPanel/NoiseOverlay
 @onready var report_panel: Panel = $ReportPanel
+@onready var pause_panel: Panel = $PausePanel
 @onready var room_option: OptionButton = $ReportPanel/ReportBox/RoomOption
 @onready var anomaly_option: OptionButton = $ReportPanel/ReportBox/AnomalyOption
 @onready var message_label: Label = $MessageLabel
@@ -28,10 +30,15 @@ const NOISE_ASSET_PATH := "res://assets/ui/noise_overlay.svg"
 var room_names: Array = []
 var anomaly_names: Array = []
 var current_room_index := 0
+var paused := false
 
 
 func _ready() -> void:
 	$ReportButton.pressed.connect(_open_report_panel)
+	$PauseButton.pressed.connect(pause_requested.emit)
+	$LeftArrowButton.pressed.connect(_select_relative_room.bind(-1))
+	$RightArrowButton.pressed.connect(_select_relative_room.bind(1))
+	$PausePanel/CenterBox/ResumeButton.pressed.connect(pause_requested.emit)
 	$ReportPanel/ReportBox/ReportActions/SubmitReportButton.pressed.connect(_submit_report)
 	$ReportPanel/ReportBox/ReportActions/CancelReportButton.pressed.connect(_close_report_panel)
 	message_timer.timeout.connect(_hide_message)
@@ -43,6 +50,13 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
+		return
+
+	if event.is_action_pressed("ui_cancel"):
+		pause_requested.emit()
+		return
+
+	if paused:
 		return
 
 	if report_panel.visible:
@@ -73,7 +87,9 @@ func reset() -> void:
 	current_room_index = 0
 	warning_label.visible = false
 	report_panel.visible = false
+	pause_panel.visible = false
 	message_label.visible = false
+	paused = false
 	danger_label.text = ""
 	_update_button_focus()
 
@@ -93,18 +109,24 @@ func update_timer(elapsed_time: float, survive_duration: float) -> void:
 
 func update_danger(active_count: int, danger_elapsed: float, danger_limit: float) -> void:
 	if active_count <= 0:
-		danger_label.text = "ANOMALIES: 0"
+		danger_label.text = "DEBUG anomalies: 0"
 		return
 
 	if active_count >= 3:
 		var remaining: int = maxi(0, int(ceil(danger_limit - danger_elapsed)))
-		danger_label.text = "ANOMALIES: %d / DANGER %02d" % [active_count, remaining]
+		danger_label.text = "DEBUG anomalies: %d / danger %02d" % [active_count, remaining]
 	else:
-		danger_label.text = "ANOMALIES: %d" % active_count
+		danger_label.text = "DEBUG anomalies: %d" % active_count
 
 
 func show_warning() -> void:
+	warning_label.text = "WARNING: Anomaly activity detected."
 	warning_label.visible = true
+	_show_message("WARNING: Anomaly detected.", 2.0)
+
+
+func show_anomaly_spawned_message() -> void:
+	_show_message("ANOMALY DETECTED", 2.0)
 
 
 func show_fix_message() -> void:
@@ -119,7 +141,16 @@ func get_current_room_index() -> int:
 	return current_room_index
 
 
+func set_paused(is_paused: bool) -> void:
+	paused = is_paused
+	pause_panel.visible = paused
+	report_panel.visible = false
+
+
 func _select_relative_room(offset: int) -> void:
+	if paused:
+		return
+
 	var next_index := (current_room_index + offset + room_names.size()) % room_names.size()
 	_select_room(next_index)
 
@@ -130,6 +161,9 @@ func _select_room(room_index: int) -> void:
 
 
 func _open_report_panel() -> void:
+	if paused:
+		return
+
 	report_panel.visible = true
 	room_option.select(current_room_index)
 	anomaly_option.select(0)
@@ -161,11 +195,10 @@ func _update_button_focus() -> void:
 
 
 func _load_texture(path: String) -> Texture2D:
-	var image := Image.new()
-	var error := image.load(path)
+	var texture := load(path) as Texture2D
 
-	if error != OK:
-		push_warning("Could not load image: %s" % path)
+	if texture == null:
+		push_warning("Could not load texture: %s" % path)
 		return null
 
-	return ImageTexture.create_from_image(image)
+	return texture
