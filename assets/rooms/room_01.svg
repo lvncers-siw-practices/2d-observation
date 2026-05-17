@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#111820"/>
+  <rect x="0" y="350" width="960" height="190" fill="#161a1d"/>
+  <rect x="80" y="90" width="170" height="260" fill="#26292c"/>
+  <rect x="710" y="90" width="170" height="260" fill="#202428"/>
+  <rect x="115" y="125" width="100" height="190" fill="#0d1115"/>
+  <rect x="745" y="125" width="100" height="190" fill="#0d1115"/>
+  <circle cx="205" cy="225" r="7" fill="#7d735f"/>
+  <circle cx="755" cy="225" r="7" fill="#7d735f"/>
+  <rect x="410" y="70" width="140" height="36" fill="#34404a"/>
+  <text x="480" y="96" font-family="monospace" font-size="22" fill="#8fa4a8" text-anchor="middle">HALL</text>
+  <path d="M420 350 L500 150 L540 350 Z" fill="#27333a" opacity="0.5"/>
+  <text x="24" y="512" font-family="monospace" font-size="20" fill="#91a19d">CAM 01 / APARTMENT HALL</text>
+</svg>

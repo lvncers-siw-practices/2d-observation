@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#07080b"/>
+  <rect x="130" y="120" width="700" height="330" fill="#0e1016"/>
+  <rect x="190" y="180" width="140" height="190" fill="#171923"/>
+  <rect x="385" y="150" width="190" height="220" fill="#11131b"/>
+  <rect x="635" y="210" width="120" height="160" fill="#151720"/>
+  <circle cx="480" cy="250" r="92" fill="#1e2427" opacity="0.55"/>
+  <circle cx="480" cy="250" r="28" fill="#77817a" opacity="0.15"/>
+  <path d="M0 0 H960 V540 H0 Z" fill="#000000" opacity="0.25"/>
+  <text x="480" y="93" font-family="monospace" font-size="24" fill="#67716e" text-anchor="middle">DARK ROOM</text>
+  <text x="24" y="512" font-family="monospace" font-size="20" fill="#6f7c78">CAM 05 / DARK ROOM</text>
+</svg>

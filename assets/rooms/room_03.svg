@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#12100d"/>
+  <rect x="0" y="370" width="960" height="170" fill="#191713"/>
+  <rect x="95" y="175" width="160" height="195" fill="#2b251c"/>
+  <rect x="305" y="145" width="130" height="225" fill="#211d17"/>
+  <rect x="520" y="190" width="230" height="180" fill="#2a2119"/>
+  <rect x="770" y="120" width="90" height="250" fill="#15120f"/>
+  <path d="M690 190 L780 150 L780 370 L690 370 Z" fill="#3a281d"/>
+  <rect x="140" y="215" width="70" height="40" fill="#4f4636"/>
+  <rect x="548" y="225" width="170" height="30" fill="#493b2e"/>
+  <text x="480" y="86" font-family="monospace" font-size="26" fill="#887b61" text-anchor="middle">STORAGE</text>
+  <text x="24" y="512" font-family="monospace" font-size="20" fill="#9a8c6f">CAM 03 / STORAGE ROOM</text>
+</svg>

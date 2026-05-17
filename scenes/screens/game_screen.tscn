@@ -1,0 +1,248 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/screens/game_screen.gd" id="1_game"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_game")
+
+[node name="WarningLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "WARNING: Too many anomalies are active."
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "SURVIVE 06:00"
+horizontal_alignment = 2
+
+[node name="DangerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 40.0
+text = "ANOMALIES: 0"
+
+[node name="CameraButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 54.0
+offset_right = -24.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="Room1Button" type="Button" parent="CameraButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CAM 01"
+
+[node name="Room2Button" type="Button" parent="CameraButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CAM 02"
+
+[node name="Room3Button" type="Button" parent="CameraButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CAM 03"
+
+[node name="Room4Button" type="Button" parent="CameraButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CAM 04"
+
+[node name="Room5Button" type="Button" parent="CameraButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CAM 05"
+
+[node name="CameraPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 112.0
+offset_right = -40.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTexture" type="TextureRect" parent="CameraPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DarkOverlay" type="ColorRect" parent="CameraPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.22)
+
+[node name="NoiseOverlay" type="TextureRect" parent="CameraPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Overlay" type="Control" parent="CameraPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CameraLabel" type="Label" parent="CameraPanel/Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 34
+text = "APARTMENT HALL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedHintLabel" type="Label" parent="CameraPanel/Overlay"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -42.0
+offset_right = -16.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "No obvious movement."
+horizontal_alignment = 1
+
+[node name="ReportButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -70.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "REPORT"
+
+[node name="ReportPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -250.0
+offset_right = -40.0
+offset_bottom = -86.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ReportBox" type="VBoxContainer" parent="ReportPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="ReportTitleLabel" type="Label" parent="ReportPanel/ReportBox"]
+layout_mode = 2
+text = "REPORT ANOMALY"
+horizontal_alignment = 1
+
+[node name="RoomOption" type="OptionButton" parent="ReportPanel/ReportBox"]
+layout_mode = 2
+
+[node name="AnomalyOption" type="OptionButton" parent="ReportPanel/ReportBox"]
+layout_mode = 2
+
+[node name="ReportActions" type="HBoxContainer" parent="ReportPanel/ReportBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SubmitReportButton" type="Button" parent="ReportPanel/ReportBox/ReportActions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "REPORT"
+
+[node name="CancelReportButton" type="Button" parent="ReportPanel/ReportBox/ReportActions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CANCEL"
+
+[node name="MessageLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -35.0
+offset_right = 260.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "MESSAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true

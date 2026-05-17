@@ -27,6 +27,17 @@
 
 が超重要。
 
+## 現在の仮アセット方針
+
+最初の本格実装では、外部素材ではなく自作の仮SVGアセットを使う。
+まずは以下を入れて、ゲームの画面構成とロジックを先に固める。
+
+* `assets/rooms/` に５部屋ぶんの仮背景
+* `assets/ui/` に監視カメラ風ノイズオーバーレイ
+
+後からKenney、itch.io、freesoundなどの素材へ差し替える。
+差し替える時は、同じ部屋の「通常状態」と「異常状態」の差分を優先して作る。
+
 ## おすすめ構成
 
 ### 背景
@@ -43,7 +54,7 @@
 
 ### UI・ボタン・監視画面
 
-https://kenney.nl
+[Kenney](https://kenney.nl)
 
 ここで：
 
@@ -57,7 +68,7 @@ https://kenney.nl
 
 ## 不気味背景
 
-https://itch.io/game-assets
+[itch.io Game Assets](https://itch.io/game-assets)
 
 検索おすすめ：
 
@@ -73,7 +84,7 @@ https://itch.io/game-assets
 
 ### おすすめ
 
-https://freesound.org
+[Freesound](https://freesound.org)
 
 検索：
 
@@ -185,7 +196,7 @@ room_no_chair.png
 
 ## Godotで探すなら
 
-https://godotshaders.com
+[Godot Shaders](https://godotshaders.com)
 
 検索：
 

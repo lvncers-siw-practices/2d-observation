@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#10151a"/>
+  <rect x="300" y="80" width="360" height="350" fill="#252b30"/>
+  <rect x="330" y="110" width="145" height="290" fill="#151b20"/>
+  <rect x="485" y="110" width="145" height="290" fill="#12181d"/>
+  <line x1="480" y1="110" x2="480" y2="400" stroke="#4b565c" stroke-width="5"/>
+  <rect x="680" y="155" width="70" height="130" fill="#20282d"/>
+  <circle cx="715" cy="195" r="12" fill="#813838"/>
+  <circle cx="715" cy="238" r="12" fill="#6c7150"/>
+  <rect x="120" y="390" width="720" height="70" fill="#171d21"/>
+  <text x="480" y="468" font-family="monospace" font-size="24" fill="#8da0a4" text-anchor="middle">ELEVATOR FRONT</text>
+  <text x="24" y="512" font-family="monospace" font-size="20" fill="#91a19d">CAM 04 / ELEVATOR FRONT</text>
+</svg>
