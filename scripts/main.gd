@@ -68,7 +68,8 @@ func _refresh_room_view(room_index: int) -> void:
 		room_index,
 		room_names[room_index],
 		game_state.get_room_hint(room_index),
-		game_state.get_room_texture_path(room_index)
+		game_state.get_room_scene_path(room_index),
+		game_state.get_room_anomaly_name(room_index)
 	)
 
 

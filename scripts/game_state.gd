@@ -24,12 +24,12 @@ const ANOMALY_NAMES := [
 	"Missing Object",
 	"Camera Noise",
 ]
-const ROOM_TEXTURES := [
-	"res://assets/rooms/room_01.svg",
-	"res://assets/rooms/room_02.svg",
-	"res://assets/rooms/room_03.svg",
-	"res://assets/rooms/room_04.svg",
-	"res://assets/rooms/room_05.svg",
+const ROOM_SCENES := [
+	"res://scenes/rooms/apartment_hall.tscn",
+	"res://scenes/rooms/security_office.tscn",
+	"res://scenes/rooms/storage_room.tscn",
+	"res://scenes/rooms/elevator_front.tscn",
+	"res://scenes/rooms/dark_room.tscn",
 ]
 
 var elapsed_time := 0.0
@@ -100,19 +100,28 @@ func get_anomaly_names() -> Array:
 	return ANOMALY_NAMES.duplicate()
 
 
-func get_room_texture_path(room_index: int) -> String:
-	return ROOM_TEXTURES[room_index]
+func get_room_scene_path(room_index: int) -> String:
+	return ROOM_SCENES[room_index]
 
 
 func get_room_hint(room_index: int) -> String:
+	var anomaly_name := get_room_anomaly_name(room_index)
+
+	if not anomaly_name.is_empty():
+		return "Anomaly: %s" % anomaly_name
+
+	return "No obvious movement."
+
+
+func get_room_anomaly_name(room_index: int) -> String:
 	for anomaly in anomalies:
 		if anomaly["fixed"]:
 			continue
 
 		if anomaly["room_index"] == room_index:
-			return "Anomaly: %s" % ANOMALY_NAMES[anomaly["anomaly_index"]]
+			return ANOMALY_NAMES[anomaly["anomaly_index"]]
 
-	return "No obvious movement."
+	return ""
 
 
 func get_active_anomaly_count() -> int:

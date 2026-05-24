@@ -11,7 +11,7 @@ const NOISE_ASSET_PATH := "res://assets/ui/noise_overlay.svg"
 @onready var danger_label: Label = $DangerLabel
 @onready var camera_label: Label = $CameraLabel
 @onready var feed_hint_label: Label = $CameraPanel/Overlay/FeedHintLabel
-@onready var room_texture: TextureRect = $CameraPanel/RoomTexture
+@onready var room_container: Control = $CameraPanel/RoomContainer
 @onready var noise_texture: TextureRect = $CameraPanel/NoiseOverlay
 @onready var report_panel: Panel = $ReportPanel
 @onready var pause_panel: Panel = $PausePanel
@@ -31,6 +31,7 @@ var room_names: Array = []
 var anomaly_names: Array = []
 var current_room_index := 0
 var paused := false
+var current_room_scene: Control
 
 
 func _ready() -> void:
@@ -94,11 +95,11 @@ func reset() -> void:
 	_update_button_focus()
 
 
-func show_room(room_index: int, room_name: String, hint: String, texture_path: String) -> void:
+func show_room(room_index: int, room_name: String, hint: String, room_scene_path: String, anomaly_name: String) -> void:
 	current_room_index = room_index
 	camera_label.text = room_name.to_upper()
 	feed_hint_label.text = hint
-	room_texture.texture = _load_texture(texture_path)
+	_load_room_scene(room_scene_path, room_name, anomaly_name)
 	_update_button_focus()
 
 
@@ -202,3 +203,30 @@ func _load_texture(path: String) -> Texture2D:
 		return null
 
 	return texture
+
+
+func _load_room_scene(path: String, room_name: String, anomaly_name: String) -> void:
+	if current_room_scene != null:
+		current_room_scene.queue_free()
+		current_room_scene = null
+
+	var packed_scene := load(path) as PackedScene
+
+	if packed_scene == null:
+		push_warning("Could not load room scene: %s" % path)
+		return
+
+	current_room_scene = packed_scene.instantiate() as Control
+
+	if current_room_scene == null:
+		push_warning("Room scene root must be a Control: %s" % path)
+		return
+
+	room_container.add_child(current_room_scene)
+	current_room_scene.set_anchors_preset(Control.PRESET_FULL_RECT)
+
+	if current_room_scene.has_method("setup"):
+		current_room_scene.setup(room_name, "")
+
+	if current_room_scene.has_method("set_anomaly"):
+		current_room_scene.set_anomaly(anomaly_name)
